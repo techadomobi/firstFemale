@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [displayedText, setDisplayedText] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0)
   const router = useRouter();
 
   const placeholderTexts = [
