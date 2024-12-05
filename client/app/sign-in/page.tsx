@@ -134,4 +134,4 @@ const fakeSignInApi = async (data: SignInFormData): Promise<{ token: string }> =
   });
 };
 
-export default SignIn;
+export default SignIn
