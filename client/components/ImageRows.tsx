@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import ImageSlider from "./ImageSlider";
 import Link from "next/link";
+import ImageSlider from "./ImageSlider";
 
 const ImageRows = () => {
   return (
@@ -17,10 +17,10 @@ const ImageRows = () => {
       </div>
 
       {/* Dynamic Image Grid */}
-      <div className="relative grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 px-4 mt-8">
-        {/* Larger Images */}
+      <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 px-4 mt-8">
+        {/* Larger Image */}
         <div className="col-span-2 row-span-2 relative">
-          <Link href="/description/1">
+          <Link href="/description">
             <img
               src="https://images.pexels.com/photos/1055691/pexels-photo-1055691.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               alt="Image 1"
@@ -28,8 +28,10 @@ const ImageRows = () => {
             />
           </Link>
         </div>
+
+        {/* Smaller Images */}
         <div className="col-span-1 relative">
-          <Link href="/description/2">
+          <Link href="/description">
             <img
               src="https://images.pexels.com/photos/1126993/pexels-photo-1126993.jpeg?cs=srgb&dl=pexels-kowalievska-1126993.jpg&fm=jpg"
               alt="Image 2"
@@ -38,7 +40,7 @@ const ImageRows = () => {
           </Link>
         </div>
         <div className="col-span-1 row-span-2 relative">
-          <Link href="/description/3">
+          <Link href="/description">
             <img
               src="https://cdn.pixabay.com/photo/2022/06/21/23/11/asian-7276658_1280.jpg"
               alt="Image 3"
@@ -47,7 +49,7 @@ const ImageRows = () => {
           </Link>
         </div>
         <div className="col-span-1 relative">
-          <Link href="/description/4">
+          <Link href="/description">
             <img
               src="https://media.istockphoto.com/id/1359562499/photo/outdoor-fashion-portrait-of-elegant-woman-wearing-lilac-suit-yellow-sunglasses-holding-trendy.jpg?b=1&s=612x612&w=0&k=20&c=pQNWsCOljjb4kwZehJO-OPyKbyVaL2xeZijALvsZNP4="
               alt="Image 4"
@@ -68,7 +70,7 @@ const ImageRows = () => {
 
       {/* Full-Width Image */}
       <div className="mt-12 px-4">
-        <Link href="/description/fullwidth">
+        <Link href="/description">
           <img
             src="https://cdn.pixabay.com/photo/2017/05/13/12/40/fashion-2309519_1280.jpg"
             alt="Full Width"
@@ -85,7 +87,7 @@ const ImageRows = () => {
       {/* Asymmetrical Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-12 px-4">
         <div className="col-span-1 relative">
-          <Link href="/description/5">
+          <Link href="/description">
             <img
               src="https://images.pexels.com/photos/1055691/pexels-photo-1055691.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
               alt="Image 5"
@@ -94,7 +96,7 @@ const ImageRows = () => {
           </Link>
         </div>
         <div className="col-span-1 relative">
-          <Link href="/description/6">
+          <Link href="/description">
             <img
               src="https://images.pexels.com/photos/1126993/pexels-photo-1126993.jpeg?cs=srgb&dl=pexels-kowalievska-1126993.jpg&fm=jpg"
               alt="Image 6"
@@ -103,7 +105,7 @@ const ImageRows = () => {
           </Link>
         </div>
         <div className="col-span-2 relative">
-          <Link href="/description/7">
+          <Link href="/description">
             <img
               src="https://cdn.pixabay.com/photo/2022/06/21/23/11/asian-7276658_1280.jpg"
               alt="Image 7"

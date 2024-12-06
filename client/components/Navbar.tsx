@@ -9,7 +9,8 @@ const Navbar: React.FC = () => {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [displayedText, setDisplayedText] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0)
+  const [charIndex, setCharIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(false);
   const router = useRouter();
 
   const placeholderTexts = [
@@ -20,25 +21,27 @@ const Navbar: React.FC = () => {
   ];
 
   useEffect(() => {
-    const currentText = placeholderTexts[wordIndex];
-    if (charIndex < currentText.length) {
-      const timeout = setTimeout(() => {
-        setDisplayedText((prev) => prev + currentText[charIndex]);
-        setCharIndex((prev) => prev + 1);
-      }, 100);
-      return () => clearTimeout(timeout);
-    } else {
-      const timeout = setTimeout(() => {
-        setCharIndex(0);
-        setDisplayedText("");
-        setWordIndex((prev) => (prev + 1) % placeholderTexts.length);
-      }, 2000);
-      return () => clearTimeout(timeout);
+    if (!isTyping) {
+      const currentText = placeholderTexts[wordIndex];
+      if (charIndex < currentText.length) {
+        const timeout = setTimeout(() => {
+          setDisplayedText((prev) => prev + currentText[charIndex]);
+          setCharIndex((prev) => prev + 1);
+        }, 100);
+        return () => clearTimeout(timeout);
+      } else {
+        const timeout = setTimeout(() => {
+          setCharIndex(0);
+          setDisplayedText("");
+          setWordIndex((prev) => (prev + 1) % placeholderTexts.length);
+        }, 2000);
+        return () => clearTimeout(timeout);
+      }
     }
-  }, [charIndex, wordIndex, placeholderTexts]);
+  }, [charIndex, wordIndex, placeholderTexts, isTyping]);
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-white sticky top-0 z-50 shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo and Toggle */}
@@ -53,24 +56,34 @@ const Navbar: React.FC = () => {
               className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-pink-500 hover:from-pink-500 hover:to-yellow-500 transition cursor-pointer"
               onClick={() => router.push("/")}
             >
-              <img src="./logo.png" alt="Logo" className="h-16 w-auto" />
+              <img src="./logo.jpeg" alt="Logo" className="h-auto w-28" />
             </h1>
           </div>
 
           {/* Search Bar */}
           <div className="flex-1 mx-4 hidden md:flex relative">
-            <div className="absolute inset-0 px-4 py-2 pointer-events-none">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-text">
-                {displayedText}
-              </span>
+            <div className="flex w-full items-center border border-gray-300 rounded-md bg-white">
+              <input
+                type="text"
+                className={`w-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition bg-transparent relative z-10 ${
+                  isTyping ? "text-gray-900" : "text-transparent"
+                }`}
+                placeholder=""
+                onFocus={() => setIsTyping(true)}
+                onBlur={() => {
+                  setIsTyping(false);
+                  setDisplayedText("");
+                }}
+              />
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                {!isTyping && (
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
+                    {displayedText}
+                  </span>
+                )}
+              </div>
+              <FaSearch className="text-gray-500 mx-3" />
             </div>
-            <input
-              type="text"
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition bg-transparent relative z-10"
-            />
-            <button className="ml-2 text-gray-700 hover:text-gray-900 transition">
-              <FaSearch size={20} />
-            </button>
           </div>
 
           {/* Right Menu */}
@@ -104,18 +117,28 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Search Bar */}
         <div className="flex md:hidden mt-4">
-          <div className="absolute inset-0 px-4 py-2 pointer-events-none">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 animate-text">
-              {displayedText}
-            </span>
+          <div className="flex w-full items-center border border-gray-300 rounded-md bg-white">
+            <input
+              type="text"
+              className={`w-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition bg-transparent relative z-10 ${
+                isTyping ? "text-gray-900" : "text-transparent"
+              }`}
+              placeholder=""
+              onFocus={() => setIsTyping(true)}
+              onBlur={() => {
+                setIsTyping(false);
+                setDisplayedText("");
+              }}
+            />
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              {!isTyping && (
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
+                  {displayedText}
+                </span>
+              )}
+            </div>
+            <FaSearch className="text-gray-500 mx-3" />
           </div>
-          <input
-            type="text"
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition bg-transparent relative z-10"
-          />
-          <button className="ml-2 text-gray-700 hover:text-gray-900 transition">
-            <FaSearch size={20} />
-          </button>
         </div>
       </div>
 

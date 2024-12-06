@@ -47,11 +47,11 @@ const ImageSlider = () => {
 
   return (
     <div className="relative bg-white h-[400px]">
-      <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 text-white text-3xl font-semibold z-10">
+      {/* <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 text-white text-3xl font-semibold z-10">
         <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 via-pink-500 via-orange-500 via-green-400 via-teal-500 to-yellow-300">
           FIRST FEMALE
         </h2>
-      </div>
+      </div> */}
       <button
         className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white bg-black p-2 rounded-full shadow-lg hover:bg-opacity-80"
         onClick={prevImage}

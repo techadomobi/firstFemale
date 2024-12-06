@@ -12,8 +12,8 @@ function MyApp({ Component, pageProps }: any) {
       <Navbar />
       {/* <CategoriesRow/> */}
       <ImageSlider/>
-      <ImageCarouselWithFeatures/>
       <ImageRows/>
+      <ImageCarouselWithFeatures/>
       <Footer/>
     </div>
   );
